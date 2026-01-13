@@ -4,6 +4,8 @@
   --lavender: #e6e6fa;
   --clay-blue: #a2c2e1;
   --terminal: #0f0f0f;
+  --cinematic: #0c0b1d;
+  --cinematic-light: #1a1830;
 }
 
 * {
@@ -570,4 +572,53 @@ body {
     animation: none !important;
     transition: none !important;
   }
+}
+
+/* Cinematic Loader Styles */
+.cinematic-panel {
+  background-color: #0c0b1d9d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: radial-gradient(circle at center, #0c0b1d9d 0%, #0505059d 100%);
+}
+
+/* Split line styles */
+.split-line-top {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.split-line-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Content reveal animation */
+.content-reveal {
+  animation: reveal-zoom 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes reveal-zoom {
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* CinematicLoader component styles */
+.fixed.inset-0 {
+  background: linear-gradient(to bottom, var(--cinematic-light), var(--cinematic));
+}
+
+.fixed.top-0 {
+  background: linear-gradient(to bottom, var(--cinematic), var(--cinematic-light));
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.fixed.bottom-0 {
+  background: linear-gradient(to top, var(--cinematic), var(--cinematic-light));
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
 }

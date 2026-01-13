@@ -5,12 +5,36 @@ import Gallery from "./components/Gallery";
 import Terminal from "./components/Terminal";
 import Modal from "./components/Modal";
 import VideoPlayer from "./components/VideoPlayer";
+import { CinematicLoader } from "./components/CinematicLoader";
 import { CATEGORIES, type MediaItem } from "./data/media";
 import { TIMELINE } from "./data/timeline";
 
 type TermLine = { text: string; tone?: "white" | "lav" | "blue" };
 
-export default function App() {
+/**
+ * Main React component that orchestrates the anniversary UI and interactive flows.
+ * 
+ * This component serves as the root of the application, managing:
+ * - Global UI state (loading, content visibility, gallery/voice unlocks)
+ * - Modal interactions (peek, voice selection, media previews)
+ * - Data flow between components
+ * - User interactions and state management
+ * 
+ * Renders a hierarchical component structure:
+ * - CinematicLoader for initial loading animation
+ * - RomanticBackground for the visual backdrop
+ * - Main content sections (Timeline, Gallery, Terminal)
+ * - Various modals and overlays
+ * 
+ * @component
+ * @returns {JSX.Element} The root application component
+ */
+function App() {
+  const [showContent, setShowContent] = useState(false);
+
+  const handleLoadingComplete = () => {
+    setShowContent(true);
+  };
   const [galleryUnlocked, setGalleryUnlocked] = useState(false);
   const [voiceUnlocked, setVoiceUnlocked] = useState(false);
 
@@ -122,13 +146,17 @@ export default function App() {
     // Voice note: no file included by default; use TTS fallback.
     try {
       const msg = new SpeechSynthesisUtterance(
-        "Khushi, happy first anniversary. I love you."
+        "Happy Anniversary Khushi! I love you!"
       );
       window.speechSynthesis.speak(msg);
     } catch (e) {
       // ignore
     }
   };
+
+  if (!showContent) {
+    return <CinematicLoader onComplete={handleLoadingComplete} />;
+  }
 
   return (
     <>
@@ -184,7 +212,7 @@ export default function App() {
           </div>
 
           <div style={{ marginTop: 18, textAlign: "center", opacity: 0.7 }}>
-            Scroll ↓
+            Please scroll down ↓
           </div>
         </div>
       </header>
@@ -211,7 +239,7 @@ export default function App() {
       <section className="section">
         <div className="container">
           <h2 className="mono" style={{ margin: "0 0 18px", fontSize: 20 }}>
-            /var/www/html/memories
+            /var/www/html/memories💕
           </h2>
 
           <Gallery
@@ -450,3 +478,5 @@ export default function App() {
     </>
   );
 }
+
+export default App;
