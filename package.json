@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://Clay69-del.github.io/FUCK",
+  "homepage": "https://Clay69-del.github.io/365days",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
