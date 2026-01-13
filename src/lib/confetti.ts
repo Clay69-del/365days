@@ -1,4 +1,4 @@
-import confetti from "canvas-confetti";
+import confetti from 'canvas-confetti/dist/confetti.module.mjs';
 
 export function fireConfetti() {
   const duration = 2200;
